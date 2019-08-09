@@ -90,14 +90,15 @@ form button:active{
         	</div>
     </nav>
     
-    <form class="a1" action="upload.php" method="POST">
-  		<input type="file" multiple>
+    <form  action="fileServlet" enctype="multipart/form-data" method="POST">
+  		<input type="file" name="file">
   		<p>Drag your files here or click in this area.</p>
   		<button type="submit">Calculate Complexity</button>
 	</form>
     
 </body>
 </html>
+
 <script>
 
 $(document).ready(function(){
