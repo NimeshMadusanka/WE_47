@@ -20,5 +20,6 @@
 <body>
 
 <h1 style="color: #ffffff;"> Ctc value is ${ctc}</h1>
+<h1 style="color: #ffffff;"> Complexity of inheritance  value is ${tci}</h1>
 </body>
 </html>
