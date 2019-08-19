@@ -13,10 +13,9 @@ public class ComplexityInheritance {
 		for (String line : checkFile.getFileLines()) {
 			line.trim();// removing spaces
 			if(line.contains("class ") || line.contains("interface ") ) {
-				complexityInheritanceValue+=1;
+				complexityInheritanceValue+=2;
 				
 				if(line.contains("implements ")) {
-					complexityInheritanceValue+=1;
 					String[] splitted= line.split("implements ");
 					String keyWordAfterString=splitted[CommonParams.ARRAY_SECOND_ELEMENT];
 					String[] beforCurly = keyWordAfterString.split("\\{");
