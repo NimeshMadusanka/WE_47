@@ -12,6 +12,9 @@ public class ComplexityInheritance {
 
 		for (String line : checkFile.getFileLines()) {
 			line.trim();// removing spaces
+			if(line.contains("class ") || line.contains("interface ") ) {
+				complexityInheritanceValue+=1;
+				
 				if(line.contains("implements ")) {
 					complexityInheritanceValue+=1;
 					String[] splitted= line.split("implements ");
@@ -26,11 +29,8 @@ public class ComplexityInheritance {
 				if(line.contains("extends ")) {
 					complexityInheritanceValue +=1;
 				}
-				if(line.contains("class ") || line.contains("interface ") ) {
-					complexityInheritanceValue+=1;
-					break;
-				}
-				
+				break;
+			}
 		}
 		return complexityInheritanceValue;
 	}
