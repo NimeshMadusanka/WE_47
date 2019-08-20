@@ -21,13 +21,12 @@ import complexity_measuring_tool.service.ComplexityInheritance;
 import complexity_measuring_tool.service.FileRead;
 import complexity_measuring_tool.util.CommonParams;
 
-
 /**
- * Servlet implementation class ComplexityInheritanceController
+ * Servlet implementation class ComplexityController
  */
-@WebServlet("/ComplexityInheritanceController")
+@WebServlet("/ComplexityController")
 @MultipartConfig
-public class ComplexityInheritanceController extends HttpServlet {
+public class ComplexityController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private File logFolder = new File("C:/COMPLEXITY/LOG");
 	private File logFile = new File(CommonParams.LOG_FILE_PATH);
@@ -35,9 +34,8 @@ public class ComplexityInheritanceController extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ComplexityInheritanceController() {
+    public ComplexityController() {
         super();
-        // TODO Auto-generated constructor stub
       //Creating Log folder if does not exist in Windows system
   		if(!logFolder.exists()) {
   			logFolder.mkdirs();
@@ -65,7 +63,6 @@ public class ComplexityInheritanceController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		//Resetting static value of ComplexityInheritance for next check ,
 		//Resetting static ci value to 0 when the total complexity measuring
 		ComplexityInheritance.resetCIValue();

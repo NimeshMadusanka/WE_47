@@ -1,76 +1,65 @@
- Maven is a Yiddish word, Meaning of Maven is accumulator of knowledge,
- began as an attempt to simplify the build processes in the Jakarta Turbine project. Maven is a build automation tool which use in Java, AspectJ, C, C++, Scala, PHP and Google Web Toolkit. Maven is built by Apache software foundation and initially releases on 13th July 2004. Latest stable release on 8th March 2018. It is using plugin-based architecture that allows to control the application through standard inputs which means anyone can write plugins.
-While using Maven doesn’t eliminate the need to know about the underlying mechanisms, Maven
-Does provide a lot of shielding from the details.
-When using maven developers doesn’t need to know any internal operations inside maven. So it makes the build process easy for developers. Secondly all the maven builds the projects using Project Object Model (POM) and set of plugins in all projects, which ensures the provision of uniform build system. Because of that, developers can familiarize with maven very easily. Maven ensure provision very useful information for the developers such as
-•	Change log document created directly from source control
-•	Cross referenced sources
-•	Dependency list
-•	Unit test reports including coverage
-•	List of mailing lists managed by the project
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-Maven provides best practices development guidelines too. As an example unit test specification, execution and reporting are some parts maven normal build cycle. Currently best practices in unit testing being used as guidelines. They are
-•	Keeping your test source code in a separate, but parallel source tree
-•	Using test case naming conventions to locate and execute tests
-•	Have test cases setup their environment and don’t rely on customizing the build for test preparation.
-Allowing transparent migration to new features
-Maven provides an easy way for Maven clients to update their installations so that they can take advantage of any changes that been made to Maven itself.
-Installation of new or updated plugins from third parties or Maven itself has been made trivial for this reason.
-Maven is what,
-You may have heard some of the following things about Maven:
-?	Maven is a site and documentation tool
-?	Maven extends Ant to let you download dependencies
-?	Maven is a set of reusable Ant scriptlets
-While Maven does these things, as you can read above in the “What is Maven?” section, these are not the only features Maven has, and its objectives are quite different.
-While Maven is designed to be flexible, to an extent, in these situations and to the needs of different projects, it cannot cater to every situation without making compromises to the integrity of its objectives.
-If you decide to use Maven and have an unusual build structure that you cannot reorganize, you may have to forgo some features or the use of Maven altogether.
+package dao.impl;
 
+import dao.CustomerDAO;
+import java.sql.SQLException;
+import java.util.List;
+import model.Customer;
 
+/**
+ *
+ * @author linux
+ */
+public class CustomerDAOImpl extends A implements CustomerDAO,ABack{
 
-Technology
+    @Override
+    public Customer searchByName(String name) {
+       /*
+        
+            JDBC Part... 
+        	implements
+        */
+        return null;
+    }
 
-Spring boot
-Spring Boot makes application easy run and stand-alone, Spring framework is an open source, application platform and IOC (Inversion of control) container based on java platform. It is develop by Pivotal Software and initial release was on 1st of October 2002. It can work on any operating system (cross platform). Any java application can use spring framework core features and java applications based on java enterprise edition platform can consume some additional features too. Although it hasn’t depend on any programming model, it became very popular among java developers as an addition, or sometimes a replacement to EJB (Enterprise Java Bean) model.
-Features 
-•	Create stand-alone spring applications
-•	Embed Tomcat, jetty or Undertow directly(no need to deploy WAR files)
-•	Provide opinionated ‘starter’ dependencies to simplify your build configuration 
-•	Automatically configure Spring and 3rd party libraries whenever possible
-•	Provide production-ready features such as metrics, health checks and externalized configuration
-•	Absolutely no code generation and no requirement for XML configuration 
+    @Override
+    public int insert(Object obj) throws SQLException, ClassNotFoundException {
+        System.out.println("Customer Saved with JDBC Part...");
+        return 1;
+    }
 
- What Spring Boot is,
-Spring Boot provides a good platform for Java developers to develop a stand-alone and production-grade spring application that you can just run. You can get started with minimum configurations without the need for an entire Spring configuration setup.
-Advantages
-•	Easy to understand and develop spring applications
-•	Increases productivity
-•	Reduces the development time
-Goals
-•	To avoid complex XML configuration in Spring
-•	To develop a production ready Spring applications in an easier way
-•	To reduce the development time and run the application independently
-•	Offer an easier way of getting started with the application
+    @Override
+    public int update(Object obj) throws SQLException, ClassNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-Spring Boot is an open source Java-based framework used to create a Micro Service. It is developed by Pivotal Team. It is easy to create a stand-alone and production ready spring applications using Spring Boot. Spring Boot contains a comprehensive infrastructure support for developing a micro service and enables you to develop enterprise-ready applications that you can “just run”.
+    @Override
+    public int delete(String id) throws SQLException, ClassNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-Spring Boot offers a fast way to build applications. It looks at your classpath and at beans you have configured, makes reasonable assumptions about what you are missing, and adds it. With Spring Boot you can focus more on business features and less on infrastructure.
+    @Override
+    public Object search(String id) throws SQLException, ClassNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-For example:
-•	Got Spring MVC? There are several specific beans you almost always need, and Spring Boot adds them automatically. A Spring MVC app also needs a servlet container, so Spring Boot automatically configures embedded Tomcat.
-•	Got Jetty? If so, you probably do NOT want Tomcat, but instead embedded Jetty. Spring Boot handles that for you.
-•	Got Thymeleaf? There are a few beans that must always be added to your application context; Spring Boot adds them for you.
-
-React js
-
-React JS is originally developed by Jordan Walke, who is a software engineer in Facebook. In present it is maintained by Facebook, Instagram and the community consist of individual developers and corporations. Initially it was released at March 2013. But it was deployed on Facebook newsfeed in 2011 and later on Instagram in 2012. It was made open-sourced in May 2013 at JSConf Conference. Latest stable version is 16.8, which was released February 2019. It is written in JavaScript and act as a cross-platform library in JavaScript. React is using to design the user interfaces in web projects.
-On 2015, in Facebook ReactJS Conference Facebook released React Native, which can be used to Android, iOS and UWP developments. On 17th April 2018 Facebook announced a new core algorithm of React framework library for creating user interfaces, which is known as React Native, which will become a foundation any improvements in future and feature developments in React framework. Architecture of React uses the flux architecture. In React data flow is an one way data-flow. And also it uses a thing called virtual DOM (Document Object Model ), which is used to create and store data structure cache in memory. JSX (JavaScript XML) is the file format use in React JS. Drawback in React JS is high memory usage because of the virtual DOM.
-
-Angular.js
-Angular is a Typescript based open-source web application framework led by the Angular team at google and by a community of individuals and corporations. Angular is a complete rewrite from the same team that built angular JS. Initially it was released at September 2016(2 years ago).Latest stable version is 7.2.12, which was released April 2019. It is written in JavaScript and act as a cross-platform library in JavaScript. Angular is using to design the user interfaces in web projects. Developers can use angular.org as a documentation reference.
-AnugularJS is build on the belief that declarative programing should be used to create user interface and connect software components. The adapts and extends traditional HTML to present dynamic content through two-way data-binding that allows for the automatic synchronization of module and views As a result, AngularJS de-emphasizes explicit Document Object Model (DOM) manipulation with the goal of improving testability and performance.
-Design goals include:
-•	to decouple DOM manipulation from application logic. The difficulty of this is dramatically affected by the way the code is structured.
-•	to decouple the client side of an application from the server side. This allows development work to progress in parallel, and allows for reuse of both sides.
-•	to provide structure for the journey of building an application: from designing the UI, through writing the business logic, to testing.
-AngularJS implements the MVC pattern to separate presentation, data, and logic components. Using dependency injection, Angular brings traditionally server side services, such as view-dependent controllers, to client-side web applications. Consequently, much of the burden on the server can be reduced.
-
+    @Override
+    public List viewAll() throws SQLException, ClassNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+	
+	int c = 10;
+	for(int i=0;i<10;i++){
+		System.out.println("AAAAA");
+		c+=i;
+	}
+	class A implements ABC{
+		System.out.println("jbdckjc");
+	}
+    
+}

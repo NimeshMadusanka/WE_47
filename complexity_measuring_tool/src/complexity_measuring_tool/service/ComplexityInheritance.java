@@ -18,12 +18,13 @@ public class ComplexityInheritance {
 		FileHandler fileHandler=null;
 		try {
 			///
-			fileHandler = new FileHandler("./src/complexity_measuring_tool/util/complexity.log",true);
+			fileHandler = new FileHandler(CommonParams.LOG_FILE_PATH,true);
 			logger.addHandler(fileHandler);
 			SimpleFormatter formatter =new SimpleFormatter();
 			fileHandler.setFormatter(formatter);
 		} catch (SecurityException | IOException e) {
-			logger.info("Error occured while handling the file in ./src/complexity_measuring_tool/util/complexity.log exception ocured due to "+e.getCause());
+			logger.info("Error occured while handling the file in "+CommonParams.LOG_FILE_PATH+" exception ocured due to "+e.getCause());
+			e.printStackTrace();
 		}
 		
 		//Check line by line in the file

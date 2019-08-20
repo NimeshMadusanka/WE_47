@@ -90,8 +90,8 @@ form button:active{
         	</div>
     </nav>
     
-    <form  action="fileServlet" enctype="multipart/form-data" method="POST">
-  		<input type="file" name="file">
+    <form  action="ComplexityController" enctype="multipart/form-data" method="POST">
+  		<input type="file" name="file" multiple="true">
   		<p>Drag your files here or click in this area.</p>
   		<button type="submit">Calculate Complexity</button>
 	</form>
