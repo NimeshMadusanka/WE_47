@@ -43,7 +43,6 @@ public class ComplexityInheritanceController extends HttpServlet {
   			logFolder.mkdirs();
   		}
   		//Creating if log file does not exist
-  		System.out.println(CommonParams.LOG_FILE_PATH);
   		if(!logFile.exists()) {
   			try {
   				logFile.createNewFile();
@@ -68,7 +67,7 @@ public class ComplexityInheritanceController extends HttpServlet {
 		
 		//Resetting static value of ComplexityInheritance for next check ,
 		//Resetting static ci value to 0 when the total complexity measuring
-		ComplexityInheritance.resetCIValue();
+//		ComplexityInheritance.resetCIValue();
 		
 		//Get file part
 		Part filePart= request.getPart("file");
@@ -78,11 +77,11 @@ public class ComplexityInheritanceController extends HttpServlet {
 		for (Part part : request.getParts()) {
             fileName = extractFileName(part);
         }
-		System.out.println(fileName);
 		InputStream inputStream=filePart.getInputStream();
-		
+		String[] arrayFile = fileName.split("\\\\");
+		String fname = arrayFile[arrayFile.length - 1];
 		//Create file object to save the file in Local folder
-		File requestFile = new File(CommonParams.LOCAL_UPLOAD_FILE_FOLDER_PATH+fileName);
+		File requestFile = new File(CommonParams.LOCAL_UPLOAD_FILE_FOLDER_PATH+fname);
 		Files.copy(inputStream, requestFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
 		
 		//Read file and get file line by line as String Array object

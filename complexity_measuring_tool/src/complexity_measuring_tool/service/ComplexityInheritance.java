@@ -43,7 +43,7 @@ public class ComplexityInheritance {
 						String[] implementedSuper = beforCurly[CommonParams.ARRAY_FIRST_ELEMENT].split(",");//Interfaces put in to the String array
 						for (int i = 0; i < implementedSuper.length; i++) {
 							complexityInheritanceValue+=1;//Increase complexity by one once found inherited interface
-							System.out.println("This class implemented "+(i+1)+" by "+implementedSuper[i].trim()+" interface");
+							System.out.println("This class implemented interface "+(i+1)+" by "+implementedSuper[i].trim());
 						}
 					}
 				}
