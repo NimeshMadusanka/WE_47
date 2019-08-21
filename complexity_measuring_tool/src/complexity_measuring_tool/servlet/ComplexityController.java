@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Date;
@@ -103,7 +104,12 @@ public class ComplexityController extends HttpServlet {
 		}
 		
 		//Removing temporary saved file in uploaded-files in WEB-INF
-		
+		File directory = new  File(CommonParams.LOCAL_UPLOAD_FILE_FOLDER_PATH);
+		String[] files = directory.list();
+		for (String file : files) {
+			File currentFile=new File(directory.getPath(),file);
+			currentFile.delete();
+		}
 
 		request.setAttribute("ctc", ctc);
 		request.setAttribute("tci", ciValue);
