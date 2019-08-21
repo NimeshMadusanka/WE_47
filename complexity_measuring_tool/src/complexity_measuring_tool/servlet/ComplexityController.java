@@ -101,13 +101,17 @@ public class ComplexityController extends HttpServlet {
 		long curMilliseconds = System.currentTimeMillis();
 		Date date = new Date(curMilliseconds);
 		CheckFile checkFile = new CheckFile(fileName, fileLines, date);
+		
+		//Create your variables here
 		int ciValue = 0;
 		int ctc = 0;
 		if (null != checkFile) {
+			//Add Your calculations here
 			//Complexity calculations are done here
 			ciValue = ComplexityInheritance.calculateCi(checkFile);
 			ctc = ComplexityType.calculateCts(requestFile);
 			
+			//Set your complexity values here
 			//Adding complexity value to checkFile before saving
 			checkFile.setCi(ciValue);
 			checkFile.setCts(ctc);
@@ -129,6 +133,7 @@ public class ComplexityController extends HttpServlet {
 		//Removing files in local uploaded-file folder after works done in Complexity Controller
 		CommonUploadLocalFile.removeFilesInLocalUploadFolder();
 		
+		//Set your attributes here
 		//Set attributes to retrieve from result page
 		request.setAttribute("ctc", ctc);
 		request.setAttribute("tci", ciValue);
