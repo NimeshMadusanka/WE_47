@@ -103,7 +103,7 @@ public class ComplexityController extends HttpServlet {
 			ctc = ComplexityType.calculateCts(requestFile);
 		}
 		
-		//Removing temporary saved file in uploaded-files in WEB-INF
+		//Removing temporary saved file in uploaded-files in WEB-INF after manipulations are done, to prevent unusual content save in local db
 		File directory = new  File(CommonParams.LOCAL_UPLOAD_FILE_FOLDER_PATH);
 		String[] files = directory.list();
 		for (String file : files) {
