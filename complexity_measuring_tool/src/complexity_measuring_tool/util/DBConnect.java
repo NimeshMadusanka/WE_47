@@ -14,7 +14,7 @@ public class DBConnect {
 		if (connection == null || connection.isClosed()) {
 
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/measure", "root", "");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/measure", "root", "mysql");
 
 		}
 

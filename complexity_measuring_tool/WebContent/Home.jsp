@@ -74,7 +74,7 @@ form button:active{
 <body>
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a href="#" class="navbar-brand">Complexcity Measuring Tool</a>
+        <a href="#" class="navbar-brand">Complexity Measuring Tool</a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -82,7 +82,8 @@ form button:active{
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav">
                 <a href="#" class="nav-item nav-link active">Home</a>
-                <a href="#" class="nav-item nav-link">History</a>
+                <a href="Home.jsp" class="nav-item nav-link">New Calculation</a>
+                <a href="History.jsp" class="nav-item nav-link">History</a>
                 <a href="#" class="nav-item nav-link">Feedback</a>
             </div>
                 <input style="margin-left: 600px;" type="text" class="form-control mr-sm-2" placeholder="Search">

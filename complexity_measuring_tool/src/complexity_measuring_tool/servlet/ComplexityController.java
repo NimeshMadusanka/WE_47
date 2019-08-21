@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -17,7 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import complexity_measuring_tool.dbaccess.FileAccess;
 import complexity_measuring_tool.model.CheckFile;
+import complexity_measuring_tool.service.CommonUploadLocalFile;
 import complexity_measuring_tool.service.ComplexityInheritance;
 import complexity_measuring_tool.service.ComplexityType;
 import complexity_measuring_tool.service.FileRead;
@@ -58,7 +61,6 @@ public class ComplexityController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -87,6 +89,9 @@ public class ComplexityController extends HttpServlet {
 
 		InputStream inputStream = filePart.getInputStream();
 		
+		//Removing files in local uploaded-file folder
+		CommonUploadLocalFile.removeFilesInLocalUploadFolder();
+		
 		// Create file object to save the file in Local folder
 		File requestFile = new File(CommonParams.LOCAL_UPLOAD_FILE_FOLDER_PATH + fileName);
 		Files.copy(inputStream, requestFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
@@ -99,18 +104,32 @@ public class ComplexityController extends HttpServlet {
 		int ciValue = 0;
 		int ctc = 0;
 		if (null != checkFile) {
+			//Complexity calculations are done here
 			ciValue = ComplexityInheritance.calculateCi(checkFile);
 			ctc = ComplexityType.calculateCts(requestFile);
+			
+			//Adding complexity value to checkFile before saving
+			checkFile.setCi(ciValue);
+			checkFile.setCts(ctc);
 		}
 		
-		//Removing temporary saved file in uploaded-files in WEB-INF after manipulations are done, to prevent unusual content save in local db
-		File directory = new  File(CommonParams.LOCAL_UPLOAD_FILE_FOLDER_PATH);
-		String[] files = directory.list();
-		for (String file : files) {
-			File currentFile=new File(directory.getPath(),file);
-			currentFile.delete();
+		//Save file to database
+		try {
+			FileAccess.saveFileData(checkFile);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-
+		
+		//Removing files in local uploaded-file folder after works done in Complexity Controller
+		CommonUploadLocalFile.removeFilesInLocalUploadFolder();
+		
+		//Set attributes to retrieve from result page
 		request.setAttribute("ctc", ctc);
 		request.setAttribute("tci", ciValue);
 		request.getRequestDispatcher("result.jsp").forward(request, response);
@@ -127,5 +146,6 @@ public class ComplexityController extends HttpServlet {
 		}
 		return "";
 	}
+	
 
 }
