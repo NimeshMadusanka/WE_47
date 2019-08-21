@@ -8,8 +8,12 @@ import complexity_measuring_tool.model.CheckFile;
 import complexity_measuring_tool.util.DBConnect;
 
 public class RecordAcess {
-
-public static boolean saveFileData(int fileId,CheckFile checkFile) {
+/*
+ * @Author Peiris.M.R.P
+ * IT16173064
+ * 
+ */
+public static boolean saveRecordData(int fileId,CheckFile checkFile) {
 		
 		Connection connection = null ;
 		int[] result = null ;

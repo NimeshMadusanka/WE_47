@@ -8,6 +8,7 @@ import java.sql.SQLException;
 /*
  * 
  * @Autour Peiris.M.R.P - IT16173064
+ * Singleton DBConnection
  */
 public class DBConnection {
 	

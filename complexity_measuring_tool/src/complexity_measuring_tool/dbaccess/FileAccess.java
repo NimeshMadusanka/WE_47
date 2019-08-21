@@ -9,7 +9,10 @@ import java.text.SimpleDateFormat;
 
 import complexity_measuring_tool.model.CheckFile;
 import complexity_measuring_tool.util.DBConnection;
-
+/*
+ * @Author Peiris.M.R.P
+ * IT16173064
+ */
 public class FileAccess {
 
 	public static boolean saveFileData(CheckFile checkFile)
@@ -32,7 +35,7 @@ public class FileAccess {
 			if (rs.next()) {
 				lastInsertedRecoedId = rs.getInt(1);
 			}
-			boolean res = RecordAcess.saveFileData(lastInsertedRecoedId, checkFile);
+			boolean res = RecordAcess.saveRecordData(lastInsertedRecoedId, checkFile);
 			if (res == true) {
 				return true;
 			}
