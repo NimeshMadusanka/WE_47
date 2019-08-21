@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import complexity_measuring_tool.model.CheckFile;
-import complexity_measuring_tool.util.DBConnect;
+import complexity_measuring_tool.util.DBConnection;
 
 public class RecordAcess {
 /*
@@ -20,7 +20,7 @@ public static boolean saveRecordData(int fileId,CheckFile checkFile) {
 		int size = 0;
 
 		try {
-			connection = DBConnect.getDBConnection();
+			connection = DBConnection.getInstance().getConnection();
 			connection.setAutoCommit(false);
 			Statement statement=connection.createStatement();
 			for(String line : checkFile.getFileLines()) {
@@ -30,7 +30,7 @@ public static boolean saveRecordData(int fileId,CheckFile checkFile) {
 			 connection.commit();
 			 connection.close();
 			 return true;
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		
