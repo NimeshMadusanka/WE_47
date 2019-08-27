@@ -21,13 +21,14 @@ import complexity_measuring_tool.dbaccess.FileAccess;
 import complexity_measuring_tool.model.CheckFile;
 import complexity_measuring_tool.service.CommonUploadLocalFile;
 import complexity_measuring_tool.service.ComplexityInheritance;
+import complexity_measuring_tool.service.ComplexityNesting;
 import complexity_measuring_tool.service.ComplexityType;
 import complexity_measuring_tool.service.FileRead;
 import complexity_measuring_tool.util.CommonParams;
 
 /**
  * 
- * @author Team Members
+ * @author SPM Team Members
  * Servlet implementation class ComplexityController
  */
 @WebServlet("/ComplexityController")
@@ -106,16 +107,19 @@ public class ComplexityController extends HttpServlet {
 		//Create your variables here
 		int ciValue = 0;
 		int ctc = 0;
+		int cns = 0;
 		if (null != checkFile) {
 			//Add Your calculations here
 			//Complexity calculations are done here
 			ciValue = ComplexityInheritance.calculateCi(checkFile);
 			ctc = ComplexityType.calculateCts(requestFile);
+			cns = ComplexityNesting.calculateNestingComplexity(checkFile);
 			
 			//Set your complexity values here
 			//Adding complexity value to checkFile before saving
 			checkFile.setCi(ciValue);
 			checkFile.setCts(ctc);
+			checkFile.setCns(cns);
 		}
 		
 		//Save file to database
@@ -138,6 +142,7 @@ public class ComplexityController extends HttpServlet {
 		//Set attributes to retrieve from result page
 		request.setAttribute("ctc", ctc);
 		request.setAttribute("tci", ciValue);
+		request.setAttribute("cns", cns);
 		request.getRequestDispatcher("result.jsp").forward(request, response);
 	}
 

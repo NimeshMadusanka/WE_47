@@ -92,5 +92,6 @@ form button:active{
 
 <h2 style="color: #ffffff;"> Complexity type of a statement value is ${ctc}</h2>
 <h2 style="color: #ffffff;"> Complexity of inheritance  value is ${tci}</h2>
+<h2 style="color: #ffffff;"> Complexity of nesting value is ${cns}</h2>
 </body>
 </html>

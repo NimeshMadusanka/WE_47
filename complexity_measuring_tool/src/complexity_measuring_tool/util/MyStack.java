@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * IT16173064
  */
 public class MyStack {
+	
 	private int topCount;
 	private ArrayList<String> lineArray;
 	
