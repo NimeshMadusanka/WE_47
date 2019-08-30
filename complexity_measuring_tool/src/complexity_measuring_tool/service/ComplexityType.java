@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+
 /*
  * @Author Nimesh
  */
@@ -40,28 +41,27 @@ public class ComplexityType {
 						if (word.equals(input1)) // Search for the given word
 						{
 							count++; // If Present increase the count by one
-							System.out.println("Nimesh if found,,,,,,,,,,,,,,,,,,"+count);
+							System.out.println("Type if found................." + count);
 						} else if (word.equals(input2) || word.equals(input3)) {
-							System.out.println("Nimesh && found,,,,,,,,,,,,,,,,,,");
 							count++; // If Present increase the count by one
+							System.out.println("Type && found................." + count);
 						} else if (word.equals(input4) || word.equals(input5)) {
-							System.out.println("Nimesh || found,,,,,,,,,,,,,,,,,,");
 							count++; // If Present increase the count by one
+							System.out.println("Type || found................." + count);
 						} else if (word.equals(input6)) {
-							
 							count = count + 2;
-							System.out.println("Nimesh while found,,,,,,,,,,,,,,,,,,"+ count);
+							System.out.println("Type while found.............." + count);
 						} else if (word.equals(input7)) {
-							System.out.println("Nimesh for found,,,,,,,,,,,,,,,,,,");
 							count = count + 2;
+							System.out.println("Type for found................." + count);
 						} else if (word.equals(input8)) {
-							System.out.println("Nimesh catch found,,,,,,,,,,,,,,,,,,");
 							count++;
+							System.out.println("Type catch found..............." + count);
 						} else if (word.equals(input9)) {
-							System.out.println("Nimesh switch found,,,,,,,,,,,,,,,,,,");
 							for (int i = 0; i < 3; i++) {
 								count++;
 							}
+							System.out.println("Type switch found.............." + count);
 						}
 					}
 				}
