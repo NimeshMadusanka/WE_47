@@ -20,4 +20,5 @@ public class CommonParams {
 	public static final String LINE_ENDS_WITH_CURLY=  "(\\s+|)\\{(\\s+|)";
 	public static final String LINE_STARTS_WITH_CURLY=  "(\\s+|)\\}(\\s+|)";
 	public static final String LOG_FILE_PATH = "C:/COMPLEXITY/LOG/complexity.log";
+	public static final String LOCAL_TEST_FILE_FOLDER_PATH = "C:/Users/Asus/Desktop/SPM/WE_47/complexity_measuring_tool/WebContent/testfile/";
 }

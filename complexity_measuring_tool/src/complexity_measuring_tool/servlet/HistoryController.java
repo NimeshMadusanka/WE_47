@@ -68,8 +68,6 @@ public class HistoryController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
-		ComplexityInheritance.resetCIValue();
 
 			// Get file part
 			Part filePart = request.getPart("file");

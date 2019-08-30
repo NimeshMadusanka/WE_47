@@ -13,10 +13,11 @@ import complexity_measuring_tool.util.CommonParams;
  */
 public class ComplexityInheritance {
 	
-	private static int complexityInheritanceValue=0;
+	
 	private static Logger logger = Logger.getLogger(ComplexityInheritance.class.getName()); 
 	
 	public static int calculateCi(CheckFile checkFile) {
+		int complexityInheritanceValue=0;
 		//File handler open to write logs 
 		FileHandler fileHandler=null;
 		try {
@@ -56,10 +57,6 @@ public class ComplexityInheritance {
 		logger.info("-----------------------------------------------------------------------------");
 		fileHandler.close();
 		return complexityInheritanceValue;
-	}
-	
-	public static void resetCIValue() {
-		complexityInheritanceValue = 0;
 	}
 
 }

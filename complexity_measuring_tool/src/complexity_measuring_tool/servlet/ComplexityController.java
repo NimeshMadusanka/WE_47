@@ -72,9 +72,6 @@ public class ComplexityController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Resetting static value of ComplexityInheritance for next check ,
-		// Resetting static ci value to 0 when the total complexity measuring
-		ComplexityInheritance.resetCIValue();
 
 		// Get file part
 		Part filePart = request.getPart("file");
