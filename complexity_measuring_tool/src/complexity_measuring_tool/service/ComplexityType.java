@@ -35,24 +35,30 @@ public class ComplexityType {
 			try {
 				while ((s = br.readLine()) != null) // Reading Content from the file
 				{
-					words = s.split(" "); // Split the word using space
+					words = s.split("\\s"); // Split the word using space
 					for (String word : words) {
 						if (word.equals(input1)) // Search for the given word
 						{
 							count++; // If Present increase the count by one
+							System.out.println("Nimesh if found,,,,,,,,,,,,,,,,,,"+count);
 						} else if (word.equals(input2) || word.equals(input3)) {
-
+							System.out.println("Nimesh && found,,,,,,,,,,,,,,,,,,");
 							count++; // If Present increase the count by one
 						} else if (word.equals(input4) || word.equals(input5)) {
-
+							System.out.println("Nimesh || found,,,,,,,,,,,,,,,,,,");
 							count++; // If Present increase the count by one
 						} else if (word.equals(input6)) {
+							
 							count = count + 2;
+							System.out.println("Nimesh while found,,,,,,,,,,,,,,,,,,"+ count);
 						} else if (word.equals(input7)) {
+							System.out.println("Nimesh for found,,,,,,,,,,,,,,,,,,");
 							count = count + 2;
 						} else if (word.equals(input8)) {
+							System.out.println("Nimesh catch found,,,,,,,,,,,,,,,,,,");
 							count++;
 						} else if (word.equals(input9)) {
+							System.out.println("Nimesh switch found,,,,,,,,,,,,,,,,,,");
 							for (int i = 0; i < 3; i++) {
 								count++;
 							}
