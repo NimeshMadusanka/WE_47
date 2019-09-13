@@ -15,6 +15,8 @@ public class ViewRecord {
 	int cts;//Set complexity of type of the statement value here
 	int ci;//Set complexity of inheritance value here
 	int cr;//Set complexity of recursion value here
+	int tw;
+	int cps;
 	
 	public ViewRecord() {
 		super();
@@ -26,7 +28,7 @@ public class ViewRecord {
 	}
 	
 	
-	public ViewRecord(String date, String value, int cs, int cns, int cts, int ci, int cr) {
+	public ViewRecord(String date, String value, int cs, int cns, int cts, int ci, int cr,int tw,int cps) {
 		super();
 		this.date = date;
 		this.value = value;
@@ -35,6 +37,8 @@ public class ViewRecord {
 		this.cts = cts;
 		this.ci = ci;
 		this.cr = cr;
+		this.tw = tw;
+		this.cps = cps;
 	}
 	public String getDate() {
 		return date;
@@ -77,6 +81,18 @@ public class ViewRecord {
 	}
 	public void setCr(int cr) {
 		this.cr = cr;
+	}
+	public int getTw() {
+		return tw;
+	}
+	public void setTw(int tw) {
+		this.tw = tw;
+	}
+	public int getCps() {
+		return cps;
+	}
+	public void setCps(int cps) {
+		this.cps = cps;
 	}
 	
 	

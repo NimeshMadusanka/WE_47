@@ -1,6 +1,11 @@
 package complexity_measuring_tool.model;
 
-
+/*
+ * @Author Peiris.M.R.P
+ * IT16173064
+ * 
+ * This model class can use for file data retrieve
+ */
 public class ViewFile {
 	
 	String fileName;
@@ -11,6 +16,7 @@ public class ViewFile {
 	int ci;//Set complexity of inheritance value here
 	int cr;//Set complexity of recursion value here
 	int tw;//File total complexity
+	int cps;
 	
 	
 	public ViewFile() {
@@ -19,7 +25,7 @@ public class ViewFile {
 	}
 
 
-	public ViewFile(String fileName, String date, int cs, int cns, int cts, int ci, int cr, int tw) {
+	public ViewFile(String fileName, String date, int cs, int cns, int cts, int ci, int cr, int tw, int cps) {
 		super();
 		this.fileName = fileName;
 		this.date = date;
@@ -29,6 +35,7 @@ public class ViewFile {
 		this.ci = ci;
 		this.cr = cr;
 		this.tw = tw;
+		this.cps = cps;
 	}
 
 
@@ -109,6 +116,16 @@ public class ViewFile {
 
 	public void setTw(int tw) {
 		this.tw = tw;
+	}
+
+
+	public int getCps() {
+		return cps;
+	}
+
+
+	public void setCps(int cps) {
+		this.cps = cps;
 	}
 	
 	

@@ -26,7 +26,7 @@ public class FileAccess {
 
 		String sql = "Insert into file values(" + 0 + ",'" + checkFile.getFileName() + "','" + dateTime + "','"
 				+ checkFile.getCs() + "','" + checkFile.getCns() + "','" + checkFile.getCts() + "','"
-				+ checkFile.getCi() + "','" + checkFile.getCr() + "','" + checkFile.getTw() + "')";
+				+ checkFile.getCi() + "','" + checkFile.getCr() + "','" + checkFile.getTw() + "','"+checkFile.getCps()+"')";
 
 		Statement statement = connection.createStatement();
 		int resp = statement.executeUpdate(sql);
@@ -60,7 +60,7 @@ public class FileAccess {
 			ResultSet rs= statement.executeQuery(sql);
 			ViewFile viewFile=null;
 			while (rs.next()) {
-				viewFile = new ViewFile(rs.getString("fileName"), rs.getString("date"),rs.getInt("cs"),rs.getInt("cns"),rs.getInt("cts"),rs.getInt("ci"),rs.getInt("cr"),rs.getInt("tw"));
+				viewFile = new ViewFile(rs.getString("fileName"), rs.getString("date"),rs.getInt("cs"),rs.getInt("cns"),rs.getInt("cts"),rs.getInt("ci"),rs.getInt("cr"),rs.getInt("tw"),rs.getInt("cps"));
 				latesFiles.add(viewFile);
 			}
 			
