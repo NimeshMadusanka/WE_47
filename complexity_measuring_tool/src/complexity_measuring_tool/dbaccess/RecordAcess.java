@@ -19,8 +19,7 @@ public class RecordAcess {
 	public static boolean saveRecordData(int fileId, CheckFile checkFile) {
 
 		Connection connection = null;
-		int[] result = null;
-		int size = 0;
+		boolean res=false;
 
 		try {
 			connection = DBConnection.getInstance().getConnection();
@@ -29,15 +28,20 @@ public class RecordAcess {
 			for (String line : checkFile.getFileLines()) {
 				statement.addBatch("INSERT INTO records values(" + 0 + ",'" + line + "','" + fileId + "')");
 			}
-			result = statement.executeBatch();
-			connection.commit();
-//			connection.close();
-			return true;
+			int[] result = statement.executeBatch();
+			
+			if(result.length > 0) {
+				connection.commit();
+				res = true;
+			}else {
+				connection.rollback();
+				res = false;
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 
-		return false;
+		return res;
 	}
 	
 	public static ArrayList<ViewRecord> retriveRecords(String fileName) {
