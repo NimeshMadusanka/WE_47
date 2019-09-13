@@ -12,7 +12,7 @@ import java.util.Date;
 public class CheckFile {
 	
 	String fileName;
-	ArrayList<String> fileLines;//File line by line save it the String ArrayList object as String values
+	ArrayList<ViewRecord> fileLines;//File line by line save it the ViewRecord ArrayList object to manipulate values
 	Date date;//Helps to manipulate date if any file records need to save
 	int cs;//Set complexity of statement value here 
 	int cns;//Set complexity of nesting statement value here
@@ -25,7 +25,7 @@ public class CheckFile {
 	public CheckFile() {
 	}
 	
-	public CheckFile(String fileName, ArrayList<String> fileLines, Date date) {
+	public CheckFile(String fileName, ArrayList<ViewRecord> fileLines, Date date) {
 		super();
 		this.fileName = fileName;
 		this.fileLines = fileLines;
@@ -33,7 +33,7 @@ public class CheckFile {
 	}
 
 	
-	public CheckFile(String fileName, ArrayList<String> fileLines, Date date, int cs, int cns, int cts, int ci, int cr,
+	public CheckFile(String fileName, ArrayList<ViewRecord> fileLines, Date date, int cs, int cns, int cts, int ci, int cr,
 			int tw, int cps) {
 		super();
 		this.fileName = fileName;
@@ -54,10 +54,10 @@ public class CheckFile {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-	public ArrayList<String> getFileLines() {
+	public ArrayList<ViewRecord> getFileLines() {
 		return fileLines;
 	}
-	public void setFileLines(ArrayList<String> fileLines) {
+	public void setFileLines(ArrayList<ViewRecord> fileLines) {
 		this.fileLines = fileLines;
 	}
 	public Date getDate() {

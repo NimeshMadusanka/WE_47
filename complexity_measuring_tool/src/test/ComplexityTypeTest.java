@@ -17,7 +17,7 @@ class ComplexityTypeTest {
 	@Test
 	void test() {
 		int cn = 0;
-		cn = ComplexityType.calculateCts(requestFile);
+//		cn = ComplexityType.calculateCts(requestFile);
 		assertEquals(9, cn);
 		assertNotEquals(10, cn);
 	}

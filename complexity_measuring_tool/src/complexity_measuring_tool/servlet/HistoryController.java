@@ -16,19 +16,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import complexity_measuring_tool.dbaccess.FileAccess;
 import complexity_measuring_tool.dbaccess.RecordAcess;
 import complexity_measuring_tool.model.CheckFile;
 import complexity_measuring_tool.model.ViewRecord;
 import complexity_measuring_tool.service.CommonUploadLocalFile;
-import complexity_measuring_tool.service.ComplexityInheritance;
-import complexity_measuring_tool.service.ComplexityNesting;
-import complexity_measuring_tool.service.ComplexityType;
+import complexity_measuring_tool.service.ComplexityHistoryForLine;
 import complexity_measuring_tool.service.FileRead;
 import complexity_measuring_tool.util.CommonParams;
 
 /**
  * @author IT16173064 Peiris M.R.P
- * IT16173064
  * 
  * Servlet implementation class HistoryController
  */
@@ -94,52 +92,63 @@ public class HistoryController extends HttpServlet {
 
 			// Read file and get file line by line as String Array object
 			ArrayList<String> fileLines = FileRead.getFileStringLines(requestFile);
+			ArrayList<ViewRecord> viewRecords = new ArrayList<ViewRecord>();
+			for (String fileLine : fileLines) {
+				ViewRecord record = new ViewRecord();
+				record.setValue(fileLine);
+				viewRecords.add(record);
+			}
 			long curMilliseconds = System.currentTimeMillis();
 			Date date = new Date(curMilliseconds);
-			CheckFile checkFile = new CheckFile(fileName, fileLines, date);
-			int ciValue = 0;
-			int ctc = 0;
-			int cnc = 0;
+			CheckFile checkFile = new CheckFile(fileName, viewRecords, date);
+			
+			
 			if (null != checkFile) {
-				ciValue = ComplexityInheritance.calculateCi(checkFile);
-				ctc = ComplexityType.calculateCts(requestFile);
-				cnc = ComplexityNesting.calculateNestingComplexity(checkFile);
+				// Calling calculations here
+				checkFile = ComplexityHistoryForLine.calculate(checkFile);
+			}
+
+			// Retrieving new file records from temp file
+			ArrayList<ViewRecord> recordList = new ArrayList<ViewRecord>();
+			if (null != checkFile) {
+				recordList = checkFile.getFileLines();
+			}
+
+			if (recordList != null && recordList.size() > 0) {
+				// Set your attributes here
+				// Set attributes to retrieve from result page
+				request.setAttribute("recordList", recordList);
+				request.setAttribute("fileName", fileName);
+				request.setAttribute("newdatTime", date);
+				request.setAttribute("fileNotFound", "false");
+			} else {
+				request.setAttribute("fileNotFound", "true");
 			}
 			
-			request.setAttribute("fileName", fileName);
-			//new complexity values setting to history result compare page
-			request.setAttribute("datTime", date);
-			request.setAttribute("new_ctc", ctc);
-			request.setAttribute("new_tci", ciValue);
-			request.setAttribute("new_cnc", cnc);
-			request.setAttribute("newFilelineList", fileLines);
+			// Removing files in local uploaded-file folder after works done in Complexity
+			// Controller
+			CommonUploadLocalFile.removeFilesInLocalUploadFolder();
+			/////////////////////////////////////////////////////////////////////////////////////////////////////////
 			
 			//Retrieving latest history file from db and compare
-			ArrayList<ViewRecord> recordList =RecordAcess.retriveRecords(fileName);
-			ArrayList<String> oldfileLines = new ArrayList<String>();
+			ArrayList<ViewRecord> recordList2 =RecordAcess.retriveRecords(fileName);
 			String olddate= "";
-			int octc=0;
-			int ociValue=0;
-			int ocnc =0;
-			if(recordList != null && recordList.size() > 0) {
-				for (ViewRecord viewRecod : recordList) {
-					oldfileLines.add(viewRecod.getValue());
-					olddate = viewRecod.getDate();
-					octc = viewRecod.getCts();
-					ociValue = viewRecod.getCi();
-					ocnc = viewRecod.getCns();
+			if(recordList2 != null && recordList2.size() > 0) {
+				for (ViewRecord viewRecod : recordList2) {
+					if(viewRecod.getDate() != null) {
+						olddate = viewRecod.getDate();
+						break;
+					}
 				}
+				//old complexity values setting to history result compare page
+				request.setAttribute("old_datTime", olddate);
+				request.setAttribute("oldRecordList", recordList2);
 				request.setAttribute("oldFileNotFound", "false");
 			}else {
 				request.setAttribute("oldFileNotFound", "true");
 			}
 			
-			//old complexity values setting to history result compare page
-			request.setAttribute("old_datTime", olddate);
-			request.setAttribute("old_ctc", octc);
-			request.setAttribute("old_tci", ociValue);
-			request.setAttribute("old_cnc", ocnc);
-			request.setAttribute("oldFilelineList", oldfileLines);
+			
 			
 			request.getRequestDispatcher("HistoryCompareView.jsp").forward(request, response);
 		

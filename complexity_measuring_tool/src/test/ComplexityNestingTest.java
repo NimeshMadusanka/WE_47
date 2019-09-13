@@ -22,12 +22,12 @@ class ComplexityNestingTest {
 	ArrayList<String> fileLines = FileRead.getFileStringLines(requestFile);
 	long curMilliseconds = System.currentTimeMillis();
 	Date date = new Date(curMilliseconds);
-	CheckFile checkFile = new CheckFile(fileName, fileLines, date);
+//	CheckFile checkFile = new CheckFile(fileName, fileLines, date);
 	
 	@Test
 	void test() {
 		int cn = 0;
-		cn = ComplexityNesting.calculateNestingComplexity(checkFile);
+//		cn = ComplexityNesting.calculateNestingComplexity(checkFile);
 		assertEquals(15, cn);
 		assertNotEquals(16, cn);
 	}

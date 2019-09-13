@@ -13,7 +13,7 @@ public class CommonParams {
 	public static final String REGEX_FOR_LOOP = "(\\s+|)for(\\s+|)\\((\\s|)\\w+\\s+\\w+(\\s+|)=(\\s+|)\\d+;(\\s+|)\\w+(\\s+|)(\\<|\\>|\\<=|\\>=)(\\s+|)\\d+;(\\s+|)\\w+(\\++|\\--)\\)(\\s+|)\\{(\\s|\\n|)";
 	public static final String REGEX_FOR_EACH = "(\\s+|)for(\\s+|)\\((\\s|)\\w+\\s+\\w+(\\s+|):(\\s+|)\\w+(\\s+|)\\)(\\s+|)\\{(\\s|\\n|)";
 	public static final String REGEX_WHILE_LOOP = "(\\s+|)while(\\s+|)\\((\\s|)+((\\w+(\\s|)+(\\<|\\>|\\=|\\<=|\\>=)(\\s|)+(\\w+|\\d+|\\w+\\.\\w+\\((\\w+|\\d+)\\)))|(\\w+)|(\\w+\\.\\w+\\((\\w+|)\\)))(\\s+|)\\)(\\s+|)\\{(\\s|\\n|)";
-	public static final String REGEX_IF = "(\\s+|)if(\\s+|)\\((\\s|)+((\\w+(\\s|)+(\\<|\\>|\\=|\\<=|\\>=)(\\s|)+(\\w+|\\d+|\\w+\\.\\w+\\((\\w+|\\d+)\\)))|(\\w+))(\\s+|)\\)(\\s+|)\\{(\\s|\\n|)";
+	public static final String REGEX_IF = "(\\s+|)if(\\s+|)\\((\\s|)+((\\w+(\\s|)+(\\<|\\>|\\=|\\<=|\\>=|==|!=)(\\s|)+(\\w+|\\d+|\\w+\\.\\w+\\((\\w+|\\d+)\\)))|(\\w+))(\\s+|)\\)(\\s+|)\\{(\\s|\\n|)";
 	public static final String REGEX_SWITCH = "(\\s+|)switch(\\s+|)\\((\\s|)+((\"\\w+\")|(\'\\w\')|\\d|\\w)(\\s|)+\\)(\\s+|)\\{(\\s|\\n|)";
 	public static final String REGEX_ELSE = "(\\s+|)}(\\s+|)else(\\s+|)\\{(\\s|\\n|)";
 	public static final String REGEX_METHOD_SIGNATURE=  "^([_0-9a-zA-Z()]+)\\{";

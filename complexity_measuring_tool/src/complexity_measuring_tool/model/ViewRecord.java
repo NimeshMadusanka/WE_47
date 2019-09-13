@@ -1,7 +1,7 @@
 package complexity_measuring_tool.model;
 
 /*
- * @Author Peiris.M.R.P
+ * @author Peiris.M.R.P
  * IT16173064
  * 
  * This model class can use for records data retrieve

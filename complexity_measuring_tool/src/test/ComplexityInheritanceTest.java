@@ -32,12 +32,12 @@ class ComplexityInheritanceTest {
 	ArrayList<String> fileLines = FileRead.getFileStringLines(requestFile);
 	long curMilliseconds = System.currentTimeMillis();
 	Date date = new Date(curMilliseconds);
-	CheckFile checkFile = new CheckFile(fileName, fileLines, date);
+//	CheckFile checkFile = new CheckFile(fileName, fileLines, date);
 
 	@Test
 	void test() {
 		int ci = 0;
-		ci = ComplexityInheritance.calculateCi(checkFile);
+//		ci = ComplexityInheritance.calculateCi(checkFile);
 		assertEquals(5, ci);
 		assertNotEquals(6, ci);
 		

@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -17,19 +16,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import complexity_measuring_tool.dbaccess.FileAccess;
+
+import complexity_measuring_tool.dbaccess.RecordAcess;
 import complexity_measuring_tool.model.CheckFile;
+import complexity_measuring_tool.model.ViewRecord;
 import complexity_measuring_tool.service.CommonUploadLocalFile;
-import complexity_measuring_tool.service.ComplexityInheritance;
-import complexity_measuring_tool.service.ComplexityNesting;
-import complexity_measuring_tool.service.ComplexityType;
+import complexity_measuring_tool.service.ComplexityForLine;
 import complexity_measuring_tool.service.FileRead;
 import complexity_measuring_tool.util.CommonParams;
 
 /**
  * 
- * @author Tharindu,Nimesh,Dananji,Ruwan
- * Servlet implementation class ComplexityController
+ * @author Nimesh,Tharindu,Dananji,Ruwan
+ * 
+ *         ComplexityController
  */
 @WebServlet("/ComplexityController")
 @MultipartConfig
@@ -82,71 +82,58 @@ public class ComplexityController extends HttpServlet {
 		for (Part part : request.getParts()) {
 			fileNameWithAbsolutePath = extractFileName(part);
 		}
-		
-		String[] splittedFilePath =fileNameWithAbsolutePath.split("\\\\");
-		fileName = splittedFilePath[splittedFilePath.length - 1 ];
+
+		String[] splittedFilePath = fileNameWithAbsolutePath.split("\\\\");
+		fileName = splittedFilePath[splittedFilePath.length - 1];
 
 		InputStream inputStream = filePart.getInputStream();
-		
-		//Removing files in local uploaded-file folder
+
+		// Removing files in local uploaded-file folder
 		CommonUploadLocalFile.removeFilesInLocalUploadFolder();
-		
+
 		// Create file object to save the file in Local folder
 		File requestFile = new File(CommonParams.LOCAL_UPLOAD_FILE_FOLDER_PATH + fileName);
 		Files.copy(inputStream, requestFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
 		// Read file and get file line by line as String Array object
 		ArrayList<String> fileLines = FileRead.getFileStringLines(requestFile);
+		ArrayList<ViewRecord> viewRecords = new ArrayList<ViewRecord>();
+		for (String fileLine : fileLines) {
+			ViewRecord record = new ViewRecord();
+			record.setValue(fileLine);
+			viewRecords.add(record);
+		}
 		long curMilliseconds = System.currentTimeMillis();
 		Date date = new Date(curMilliseconds);
-		CheckFile checkFile = new CheckFile(fileName, fileLines, date);
+		CheckFile checkFile = new CheckFile(fileName, viewRecords, date);
 		
-		//Create your variables here
-		int ciValue = 0;
-		int ctc = 0;
-		int cns = 0;
-		int tc = 0;
+		boolean res= false;
 		if (null != checkFile) {
-			//Add Your calculations here
-			//Complexity calculations are done here
-			ciValue = ComplexityInheritance.calculateCi(checkFile);
-			ctc = ComplexityType.calculateCts(requestFile);
-			cns = ComplexityNesting.calculateNestingComplexity(checkFile);
-			
-			tc = ciValue+ctc+cns;
-			
-			//Set your complexity values here
-			//Adding complexity value to checkFile before saving
-			checkFile.setCi(ciValue);
-			checkFile.setCts(ctc);
-			checkFile.setCns(cns);
-			checkFile.setCns(tc);
+			// Calling calculations here
+			res = ComplexityForLine.calculate(checkFile);
 		}
-		
-		//Save file to database
-		try {
-			FileAccess.saveFileData(checkFile);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
+
+		// Retrieving latest history file records from db
+		ArrayList<ViewRecord> recordList = new ArrayList<ViewRecord>();
+		if(res == true) {
+			recordList = RecordAcess.retriveRecords(fileName);
 		}
-		
-		//Removing files in local uploaded-file folder after works done in Complexity Controller
+
+		if (recordList != null && recordList.size() > 0) {
+			// Set your attributes here
+			// Set attributes to retrieve from result page
+			request.setAttribute("recordList", recordList);
+			request.setAttribute("fileName", fileName);
+			request.setAttribute("old_datTime", date);
+			request.setAttribute("oldFileNotFound", "false");
+		} else {
+			request.setAttribute("oldFileNotFound", "true");
+		}
+
+		// Removing files in local uploaded-file folder after works done in Complexity
+		// Controller
 		CommonUploadLocalFile.removeFilesInLocalUploadFolder();
 		
-		//Set your attributes here
-		//Set attributes to retrieve from result page
-		request.setAttribute("fileName", fileName);
-		request.setAttribute("date", date);
-		request.setAttribute("ctc", ctc);
-		request.setAttribute("tci", ciValue);
-		request.setAttribute("cns", cns);
-		request.setAttribute("tc", tc);
 		request.getRequestDispatcher("result.jsp").forward(request, response);
 	}
 
@@ -161,6 +148,5 @@ public class ComplexityController extends HttpServlet {
 		}
 		return "";
 	}
-	
 
 }

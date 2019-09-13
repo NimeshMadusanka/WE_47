@@ -12,7 +12,7 @@ import complexity_measuring_tool.model.CheckFile;
 import complexity_measuring_tool.model.ViewFile;
 import complexity_measuring_tool.util.DBConnection;
 /*
- * @Author Peiris.M.R.P
+ * @author Peiris.M.R.P
  * IT16173064
  */
 public class FileAccess {
@@ -24,9 +24,7 @@ public class FileAccess {
 		DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 		String dateTime = df.format(checkFile.getDate());
 
-		String sql = "Insert into file values(" + 0 + ",'" + checkFile.getFileName() + "','" + dateTime + "','"
-				+ checkFile.getCs() + "','" + checkFile.getCns() + "','" + checkFile.getCts() + "','"
-				+ checkFile.getCi() + "','" + checkFile.getCr() + "','" + checkFile.getTw() + "','"+checkFile.getCps()+"')";
+		String sql = "Insert into file values(" + 0 + ",'" + checkFile.getFileName() + "','" + dateTime +"')";
 
 		Statement statement = connection.createStatement();
 		int resp = statement.executeUpdate(sql);
@@ -40,6 +38,9 @@ public class FileAccess {
 			boolean res = RecordAcess.saveRecordData(lastInsertedRecoedId, checkFile);
 			if (res == true) {
 				return true;
+			}else {
+				connection.rollback();
+				return false;
 			}
 		}
 		connection.rollback();
