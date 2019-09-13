@@ -41,7 +41,7 @@ public class RecordAcess {
 	}
 	
 	public static ArrayList<ViewRecord> retriveRecords(String fileName) {
-		String sql= "select r.value,f.date,f.cs,f.cns,f.cts,f.ci,f.cr "
+		String sql= "select r.value,f.date,f.cs,f.cns,f.cts,f.ci,f.cr,f.tw,f.cps "
 				+ "from records r, file f "
 				+ "where f.fileId=r.fileId and r.fileId = ("
 				+ "select fl.fileId "
@@ -59,7 +59,7 @@ public class RecordAcess {
 			ResultSet rs= statement.executeQuery(sql);
 			ViewRecord line=null;
 			while (rs.next()) {
-				line = new ViewRecord(rs.getString("date"), rs.getString("value"),rs.getInt("cs"),rs.getInt("cns"),rs.getInt("cts"),rs.getInt("ci"),rs.getInt("cr"));
+				line = new ViewRecord(rs.getString("date"), rs.getString("value"),rs.getInt("cs"),rs.getInt("cns"),rs.getInt("cts"),rs.getInt("ci"),rs.getInt("cr"),rs.getInt("tw"),rs.getInt("cps"));
 				latesRecords.add(line);
 			}
 			
