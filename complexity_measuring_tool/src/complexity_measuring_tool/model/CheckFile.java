@@ -20,7 +20,7 @@ public class CheckFile {
 	int ci;//Set complexity of inheritance value here
 	int cr;//Set complexity of recursion value here
 	int tw;//File total complexity
-	
+	int cps;
 	
 	public CheckFile() {
 	}
@@ -34,7 +34,7 @@ public class CheckFile {
 
 	
 	public CheckFile(String fileName, ArrayList<String> fileLines, Date date, int cs, int cns, int cts, int ci, int cr,
-			int tw) {
+			int tw, int cps) {
 		super();
 		this.fileName = fileName;
 		this.fileLines = fileLines;
@@ -45,6 +45,7 @@ public class CheckFile {
 		this.ci = ci;
 		this.cr = cr;
 		this.tw = tw;
+		this.cps = cps;
 	}
 
 	public String getFileName() {
@@ -114,5 +115,15 @@ public class CheckFile {
 	public void setTw(int tw) {
 		this.tw = tw;
 	}
+
+	public int getCps() {
+		return cps;
+	}
+
+	public void setCps(int cps) {
+		this.cps = cps;
+	}
+	
+	
 	
 }
