@@ -31,7 +31,7 @@ public class RecordAcess {
 			}
 			result = statement.executeBatch();
 			connection.commit();
-			connection.close();
+//			connection.close();
 			return true;
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

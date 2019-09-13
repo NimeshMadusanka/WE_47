@@ -105,6 +105,7 @@ public class ComplexityController extends HttpServlet {
 		int ciValue = 0;
 		int ctc = 0;
 		int cns = 0;
+		int tc = 0;
 		if (null != checkFile) {
 			//Add Your calculations here
 			//Complexity calculations are done here
@@ -112,11 +113,14 @@ public class ComplexityController extends HttpServlet {
 			ctc = ComplexityType.calculateCts(requestFile);
 			cns = ComplexityNesting.calculateNestingComplexity(checkFile);
 			
+			tc = ciValue+ctc+cns;
+			
 			//Set your complexity values here
 			//Adding complexity value to checkFile before saving
 			checkFile.setCi(ciValue);
 			checkFile.setCts(ctc);
 			checkFile.setCns(cns);
+			checkFile.setCns(tc);
 		}
 		
 		//Save file to database
@@ -137,9 +141,12 @@ public class ComplexityController extends HttpServlet {
 		
 		//Set your attributes here
 		//Set attributes to retrieve from result page
+		request.setAttribute("fileName", fileName);
+		request.setAttribute("date", date);
 		request.setAttribute("ctc", ctc);
 		request.setAttribute("tci", ciValue);
 		request.setAttribute("cns", cns);
+		request.setAttribute("tc", tc);
 		request.getRequestDispatcher("result.jsp").forward(request, response);
 	}
 
